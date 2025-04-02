@@ -15,6 +15,13 @@
     </properties>
 
     <dependencies>
+        <!-- JPA 3.1.0 -->
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
         <!-- Hibernate 6.6.12 -->
         <dependency>
             <groupId>org.hibernate.orm</groupId>
@@ -22,11 +29,11 @@
             <version>6.6.12.Final</version>
         </dependency>
 
-        <!-- JDBC MySQL Driver 9.2.0 -->
+        <!-- JDBC MySQL Driver 8.0.33 -->
         <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <version>9.2.0</version>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
         </dependency>
     </dependencies>
 
