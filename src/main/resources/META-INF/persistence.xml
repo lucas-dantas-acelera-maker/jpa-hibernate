@@ -6,6 +6,7 @@
     <persistence-unit name="jpa-hibernate">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>model.User</class>
+        <class>model.Product</class>
 
         <properties>
             <!-- MySQL -->
