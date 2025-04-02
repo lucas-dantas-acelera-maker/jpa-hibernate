@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         EntityManager em = JPAUtil.getEntityManager();
 
-        User user = new User("Leonardo", "leonardo@lanche.com");
+        User user = new User("Wrong User", "wrong@user.com");
 
         // Save User
         /*
@@ -59,8 +59,19 @@ public class Main {
         *  The merge() method must be called to persist a detached Object.
         * */
 
-        User foundUser = em.find(User.class, 7L);
+        // Delete User
+
+
+        User foundUser = em.find(User.class, 8L);
+        System.out.println("Found user: ");
         System.out.println(foundUser.getId() + " - " + foundUser.getName() + " - " + foundUser.getEmail());
+
+        if (foundUser != null) {
+            em.getTransaction().begin();
+            em.remove(foundUser);
+            em.getTransaction().commit();
+            System.out.println("User deleted.");
+        }
 
         em.close();
     }
