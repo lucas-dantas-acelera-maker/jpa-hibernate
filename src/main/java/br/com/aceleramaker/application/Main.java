@@ -31,13 +31,28 @@ public class Main {
         // Get All Users
         /*
         * TypedQuery<ReturnedClass> query = em.createQuery(query, returned class)
+        *
+        * String jpql = "SELECT u from User u";
+        * TypedQuery<User> query = em.createQuery(jpql, User.class);
+        * query.setMaxResults(5);
+        * List<User> users = query.getResultList();
+        * users.forEach(u -> System.out.printf("%d - %s - %s%n", u.getId(), u.getName(), u.getEmail()));
         * */
-        String jpql = "SELECT u from User u";
-        TypedQuery<User> query = em.createQuery(jpql, User.class);
-        query.setMaxResults(5);
-        List<User> users = query.getResultList();
 
-        users.forEach(u -> System.out.printf("%d - %s - %s%n", u.getId(), u.getName(), u.getEmail()));
+        // Update User
+        /* Update operations require a Transaction
+        *  After setting the new values, the merge(objToBeUpdated) method is called to update the User info
+        * */
+        em.getTransaction().begin();
+
+        User userToUpdate = em.find(User.class, 7L);
+        userToUpdate.setName("Leonardo Leitão");
+        userToUpdate.setEmail("leo.leitao@lanche.com");
+        em.merge(userToUpdate);
+        em.getTransaction().commit();
+
+        User foundUser = em.find(User.class, 7L);
+        System.out.println(foundUser.getId() + " - " + foundUser.getName() + " - " + foundUser.getEmail());
 
         em.close();
     }
