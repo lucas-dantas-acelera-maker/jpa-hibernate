@@ -42,14 +42,22 @@ public class Main {
         // Update User
         /* Update operations require a Transaction
         *  After setting the new values, the merge(objToBeUpdated) method is called to update the User info
+        *
+        *  em.getTransaction().begin();
+        *  User userToUpdate = em.find(User.class, 7L);
+        *  userToUpdate.setName("Leonardo Leitão");
+        *  userToUpdate.setEmail("leo.leitao@lanche.com");
+        *  em.merge(userToUpdate);
+        *  em.getTransaction().commit();
         * */
-        em.getTransaction().begin();
 
-        User userToUpdate = em.find(User.class, 7L);
-        userToUpdate.setName("Leonardo Leitão");
-        userToUpdate.setEmail("leo.leitao@lanche.com");
-        em.merge(userToUpdate);
-        em.getTransaction().commit();
+        /*
+        *  JPA manages the relation between Object and Entity.
+        *  When the Object is retrieved from the database, JPA will sync the Object and the Entity.
+        *  If the Object is updated, even if the merge() is not called, the Entity will be synchronized.
+        *  We can disable this management, by calling the EntityManager.detach(Object).
+        *  The merge() method must be called to persist a detached Object.
+        * */
 
         User foundUser = em.find(User.class, 7L);
         System.out.println(foundUser.getId() + " - " + foundUser.getName() + " - " + foundUser.getEmail());
