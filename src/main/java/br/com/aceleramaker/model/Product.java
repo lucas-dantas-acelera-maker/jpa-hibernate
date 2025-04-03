@@ -12,7 +12,7 @@ public class Product {
     @Column(nullable=false, length=120)
     private String name;
 
-    @Column(nullable=false, precision=11, scale=2)
+    @Column(nullable=false, precision=11)
     private Double price;
 
     public Product() {
