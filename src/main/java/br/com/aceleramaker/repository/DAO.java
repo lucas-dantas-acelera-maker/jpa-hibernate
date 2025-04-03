@@ -85,6 +85,10 @@ public class DAO<E> {
         return query.getResultList();
     }
 
+    public Class<E> getEntityClass() {
+        return objClass;
+    }
+
     public void close() {
         em.close();
     }
